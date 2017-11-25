@@ -53,7 +53,6 @@
 
 #if CTP_LOCKDOWN_INFO
 static u8 lockdown_info[FT_LOCKDOWN_SIZE];
-extern u8 tp_color;
 #endif
 
 static u8 TP_Maker, LCD_Maker;
@@ -1084,14 +1083,13 @@ static void fts_ctpm_read_lockdown(struct i2c_client *client,
 		lockdown_info[k] = data->lockdown_info[k];
 	}
 
-	tp_color = lockdown_info[2];
 	TP_Maker = lockdown_info[0];
 	LCD_Maker = lockdown_info[1];
 	dev_info(&client->dev,
-		 "Lockdown info: %02X %02X %02X %02X %02X %02X %02X %02X",
-		 lockdown_info[0], lockdown_info[1], lockdown_info[2],
-		 lockdown_info[3], lockdown_info[4], lockdown_info[5],
-		 lockdown_info[6], lockdown_info[7]);
+		 "Lockdown info: %02X %02X %02X %02X %02X %02X %02X",
+		 lockdown_info[0], lockdown_info[1], lockdown_info[3],
+		 lockdown_info[4], lockdown_info[5], lockdown_info[6],
+		 lockdown_info[7]);
 }
 
 #if TPD_AUTO_UPGRADE
@@ -2060,10 +2058,10 @@ static ssize_t ctp_lockdown_proc_read(struct file *file, char __user *buf,
 	}
 	*ppos += count;
 
-	return sprintf(ptr, "%02X%02X%02X%02X%02X%02X%02X%02X\n",
-		       lockdown_info[0], lockdown_info[1], lockdown_info[2],
-		       lockdown_info[3], lockdown_info[4], lockdown_info[5],
-		       lockdown_info[6], lockdown_info[7]);
+	return sprintf(ptr, "%02X%02X%02X%02X%02X%02X%02X\n",
+		       lockdown_info[0], lockdown_info[1], lockdown_info[3],
+		       lockdown_info[4], lockdown_info[5], lockdown_info[6],
+		       lockdown_info[7]);
 
 }
 
