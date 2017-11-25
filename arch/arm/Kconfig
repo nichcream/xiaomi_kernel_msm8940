@@ -2266,6 +2266,15 @@ config ARCH_HIBERNATION_POSSIBLE
 
 endmenu
 
+menu "Xiaomi board selection"
+
+config MACH_SANTONI
+	bool "Santoni board"
+	help
+	  Support for Redmi 4X
+
+endmenu
+
 source "net/Kconfig"
 
 source "drivers/Kconfig"
